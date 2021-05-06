@@ -18,7 +18,8 @@ function computerPlay() {
 
 function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
-    let result;
+    let result = "";
+    console.log(`Computer played ${computerSelection}`)
     if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
         if (playerSelection == computerSelection) {
             result = "It's a tie!";
@@ -41,13 +42,14 @@ function game() {
     for (let i = 1 ; i <= 5 ; i++) {
         let playerHand = prompt("Choose your weapon (Rock/Paper/Scissors)");
         let computerHand = computerPlay();
-        console.log(playRound(playerHand, computerHand))
-        if (playRound(playerHand, computerHand) == "You lose!" || "That move is not legal...") {
+        let roundResult = playRound(playerHand, computerHand);
+        if (roundResult == "You lose!" || roundResult == "That move is not legal...") {
             computerWin++;
-        } else if (playRound(playerHand, computerHand) == "You win!") {
+        } else if (roundResult == "You win!") {
             playerWin++;
         }
-        console.log(`Your score : ${playerWin} \nComputer score : ${computerWin}`)
+        console.log(roundResult);
+        console.log(`Your score : ${playerWin} \nComputer score : ${computerWin}`);
 
     }
     if (playerWin == computerWin) {
