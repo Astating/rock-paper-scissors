@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: pink;
+  color: purple;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  padding: 5px;
+  margin: 0;
+}
+
+footer {
+    position:fixed;
+    bottom:5px;
+    right: 5px;
+}
+
+.profile-pic {
+  border-radius: 40%;
+  border: solid 1px black;
+}
+
+.profile-pic:hover {
+  transform: scale(1.1);
+}
+
+.profile-pic:active {
+  transform: translate(1px, 1px);
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+main {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+#rps {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button {
+  flex-grow: 1;
+  flex-basis: 100px;
+  max-height: 250px;
+  max-width: 250px;
+}
+
+.button img {
+  border: solid 4px gold;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.button:active {
+  transform: scale(1);
+}
+
+p {
+  text-align: center;
+  font-weight: bold;
+  text-decoration: underline forestgreen 1px;
+}
+
+#final-result {
+  color: gold;
+  background-color: purple;
+  text-decoration: none;
+  font-weight: bolder;
+  font-size: 1.2em;
+}
