@@ -1,68 +1,77 @@
 function computerPlay() {
-    let choice = Math.floor(Math.random()*3)
-    switch (choice) {
-        case 0:
-            return "rock";
-            break;
-        case 1:
-            return "paper";
-            break;
-        case 2 :
-            return "scissors";
-            break
-        default:
-            return "Hmm, something weird is happening..."
-            break;
-    }
+  let choice = Math.floor(Math.random() * 3);
+  switch (choice) {
+    case 0:
+      return "rock";
+      break;
+    case 1:
+      return "paper";
+      break;
+    case 2:
+      return "scissors";
+      break;
+    default:
+      return "Hmm, something weird is happening...";
+      break;
+  }
 }
+
+const buttons = document.querySelectorAll('.button');
+const finalResult = document.getElementById('final-result');
+const resultDisplay = document.getElementById('results');
+const gamesCount = document.getElementById('gamescount');
+
+let playerWin = 0 ;
+let computerWin = 0 ;
+
+buttons.forEach(button =>
+  button.addEventListener('click', () => {
+    let playerPlay = button.id;
+    if (computerWin == 5 || playerWin == 5) {
+      computerWin = 0 ;
+      playerWin = 0 ;
+      finalResult.textContent = "";
+    }
+    playRound(playerPlay, computerPlay());
+  })
+)
+
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase();
-    let result = "";
-    console.log(`Computer played ${computerSelection}`)
-    if (playerSelection == "rock" || playerSelection == "paper" || playerSelection == "scissors") {
-        if (playerSelection == computerSelection) {
-            result = "It's a tie!";
-        } else if ((playerSelection == "rock" && computerSelection == "paper") || (playerSelection == "paper" && computerSelection == "scissors") || (playerSelection == "scissors" && computerSelection == "rock")){
-            result = "You lose!";
-        } else {
-            result = "You win!";
-        }
-    } else {
-        result = "That move is not legal...";
-    }
-    return result;
+  playerSelection = playerSelection.toLowerCase();
+  let result = "";
 
+  if (
+    playerSelection == "rock" ||
+    playerSelection == "paper" ||
+    playerSelection == "scissors"
+  ) {
+    if (playerSelection == computerSelection) {
+      result = "It's a tie!";
+    } else if (
+      (playerSelection == "rock" && computerSelection == "paper") ||
+      (playerSelection == "paper" && computerSelection == "scissors") ||
+      (playerSelection == "scissors" && computerSelection == "rock")
+    ) {
+      result = "You lose!";
+      computerWin++;
+    } else {
+      result = "You win!";
+      playerWin++;
+    }
+  } else {
+    result = "That move is not legal...";
   }
+  resultDisplay.textContent = `Computer played ${computerSelection}. ${result}`;
+  gamesCount.textContent = `Computer : ${computerWin} | You : ${playerWin}`;
 
-function game() {
-    let playerWin = 0;
-    let computerWin = 0;
-
-    for (let i = 1 ; i <= 5 ; i++) {
-        let playerHand = prompt("Choose your weapon (Rock/Paper/Scissors)");
-        let computerHand = computerPlay();
-        let roundResult = playRound(playerHand, computerHand);
-        if (roundResult == "You lose!" || roundResult == "That move is not legal...") {
-            computerWin++;
-        } else if (roundResult == "You win!") {
-            playerWin++;
-        }
-        console.log(roundResult);
-        console.log(`Your score : ${playerWin} \nComputer score : ${computerWin}`);
-
-    }
-    if (playerWin == computerWin) {
-        console.log("No winner!")
-    } else if (playerWin > computerWin) {
-        console.log("Victory!")
-    } else {
-        console.log("Defeat!")
-    }
+  if (playerWin == 5) {
+    finalResult.textContent = " VICTORY!";
+  } else if (computerWin == 5) {
+    finalResult.textContent = " DEFEAT!"
+  }
+  
 }
-
-
-game()
 
 
 
